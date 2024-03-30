@@ -14,7 +14,7 @@ weekly_budget = st.radio('Select Budget (per week)', ['$50', '$75', '$100'])
 diet_type = st.radio('Diet Type', ['Vegan', 'Vegetarian', 'Non-Vegetarian', 'Gluten Free'])
 dietary_preferneces = st.radio('Dietary Preferences', ['High Protien', 'High Fat', 'Balanced Nutrition'])
 
-openai.api_key = os.environ["OPENAI_API_KEY"]
+openai.api_key = os.environ["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"]
 
 client = OpenAI()
 
