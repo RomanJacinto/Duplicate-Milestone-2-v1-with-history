@@ -5,9 +5,7 @@ from openai import OpenAI
 
 st.image("/Users/kulsoom/Milestone-2-v1/Milestone-2-v1/static/download.jpeg")
 
-openai.api_key = os.environ["APIKEY"]
-
-client = OpenAI()
+client = OpenAI(api_key='APIKEY')
 
 def get_completion(prompt, model="gpt-3.5-turbo"):
    completion = client.chat.completions.create(
@@ -24,7 +22,7 @@ def get_completion(prompt, model="gpt-3.5-turbo"):
 
 option = st.selectbox(
    "What would you like to learn about?",
-   ("Importance of Balance", "Why are protiens important?", "Which Veggies?"),
+   ("Importance of Balance", "Why are proteins important?", "Which Veggies?"),
    index=None,
    placeholder="Select a tab and start exploring",
 )
@@ -36,8 +34,8 @@ if (option == "Importance of Balance"):
 
 
     st.write(response)
-    
-elif (option == "Why are protiens important?"):
+
+elif (option == "Why are proteins important?"):
     prompt = "Please explain the importance of eating balanced and healthy meals"
 
     response = get_completion(prompt)

@@ -9,7 +9,7 @@ st.sidebar.markdown("Grocery Shopping List Generator")
 message = "Experience the magical grocery generator! \nWhere students can create a shopping list based on personal needs!"
 st.write(message)
 
-client = OpenAI(api_key="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")
+client = OpenAI(api_key="APIKEY")
 
 def grocery_list():
     st.title("My Grocery List")

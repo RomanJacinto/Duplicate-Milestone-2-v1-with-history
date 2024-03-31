@@ -14,9 +14,7 @@ weekly_budget = st.radio('Select Budget (per week)', ['$50', '$75', '$100'])
 diet_type = st.radio('Diet Type', ['Vegan', 'Vegetarian', 'Non-Vegetarian', 'Gluten Free'])
 dietary_preferneces = st.radio('Dietary Preferences', ['High Protien', 'High Fat', 'Balanced Nutrition'])
 
-openai.api_key = os.environ["APIKEY"]
-
-client = OpenAI()
+client = OpenAI(api_key='APIKEY')
 
 # create a wrapper function
 def get_completion(prompt, model="gpt-3.5-turbo"):
