@@ -1,41 +1,37 @@
+import os
+import openai
+import streamlit as st
 from openai import OpenAI
 
-# Initializing the OpenAI client
-client = OpenAI(api_key='my-api-key-here')
+st.markdown("Grocery Shopping List Generator")
+st.sidebar.markdown("Grocery Shopping List Generator")
 
-# Function to get completion from OpenAI
-def get_completion(prompt, model="gpt-3.5-turbo"):
-    completion = client.chat.completions.create(
-        model=model,
-        messages=[
-            {"role": "system", "content": "Create a grocery shopping list?"},
-            {"role": "user", "content": prompt},
-        ]
-    )
-    return completion.choices[0].message.content
+message = "Experience the magical grocery generator! \nWhere students can create a shopping list based on personal needs!"
+st.write(message)
 
-# Handling different options
-option = input("What kind of grocery shopping list would you like to create this week?\n"
-               "1. On a budget, I am limited on funds but would like to eat healthy\n"
-               "2. I want to go all out!\n"
-               "3. I need groceries with dietary restrictions\n"
-               "Enter the number corresponding to your choice: ")
+client = OpenAI(api_key="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")
 
-if option == "1":
-    prompt = "Create a healthy budget friendly grocery shopping list for the week!"
-    response = get_completion(prompt)
-    print(response)
+def grocery_list():
+    st.title("My Grocery List")
+    
+    # Initialize an empty list to store groceries
+    groceries = []
+    
+    # Text input to add items to the list
+    new_item = st.text_input("Add new item:")
+    
+    # Button to add the item to the list
+    if st.button("Add"):
+        if new_item:
+            groceries.append(new_item)
+            st.success(f"'{new_item}' added to the list!")
+        else:
+            st.warning("Please enter an item.")
+    
+    # Display the current grocery list
+    st.subheader("Current Grocery List:")
+    for i, item in enumerate(groceries, start=1):
+        st.write(f"{i}. {item}")
 
-elif option == "2":
-    prompt = "Give me an indulgent grocery shopping list for the week!"
-    response = get_completion(prompt)
-    print(response)
-
-elif option == "3":
-    prompt = "Can you create a grocery shopping list with dietary restrictions such as no meat or no pork"
-    response = get_completion(prompt)
-    print(response)
-
-else:
-    print("Invalid option. Please enter a number between 1 and 3.")
-
+if __name__ == "__main__":
+    grocery_list()
