@@ -36,3 +36,19 @@ if (option == "Importance of Balance"):
 
 
     st.write(response)
+    
+elif (option == "Why are protiens important?"):
+    prompt = "Please explain the importance of eating balanced and healthy meals"
+
+    response = get_completion(prompt)
+
+    st.write(response)
+
+elif (option == "Which Veggies?"):
+    prompt = "Please explain the importance of eating balanced and healthy meals"
+
+    response = get_completion(prompt)
+
+    st.write(response)
+
+
