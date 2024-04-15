@@ -1,5 +1,6 @@
 import streamlit as st
 import openai
+import main_page
 
 st.markdown("Grocery Shopping List Generator")
 st.sidebar.markdown("Grocery Shopping List Generator")
@@ -28,7 +29,7 @@ def generate_grocery_list(weeks, vegetarian=False):
     return total_ingredients
 
 def get_openai_tip(query):
-    openai.api_key = st.secrets["INSERTAPIKEYHERE"]
+    openai.api_key = st.secrets["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"]
     response = openai.Completion.create(
         engine="text-davinci-002",
         prompt=query,
@@ -55,3 +56,7 @@ if st.button("Generate Grocery List"):
     if st.button("Get Cooking Tips"):
         tip = get_openai_tip("Provide some cooking tips for a healthy vegetarian diet")
         st.write(tip)
+
+
+if st.button("Generate Menu List"):
+    st.write(main_page.grocery_list)

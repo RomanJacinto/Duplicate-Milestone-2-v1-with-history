@@ -5,7 +5,7 @@ from openai import OpenAI
 
 st.image("/Users/kulsoom/Milestone-2-v1/Milestone-2-v1/static/download.jpeg")
 
-client = OpenAI(api_key='APIKEY')
+client = OpenAI(api_key='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')
 
 def get_completion(prompt, model="gpt-3.5-turbo"):
    completion = client.chat.completions.create(
