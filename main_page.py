@@ -25,9 +25,9 @@ delimiter = ', '
 
 exclusion_string = delimiter.join(exclusions)
 
-#openai.api_key = os.environ["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"]
+#openai.api_key = os.environ["APIKEY"]
 
-client = OpenAI(api_key="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")
+client = OpenAI(api_key="APIKEY")
 menu = ""
 
 # create a wrapper function
