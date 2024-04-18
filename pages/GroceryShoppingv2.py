@@ -29,7 +29,7 @@ def generate_grocery_list(weeks, vegetarian=False):
     return total_ingredients
 
 def get_openai_tip(query):
-    openai.api_key = st.secrets["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"]
+    openai.api_key = st.secrets["APIKEY"]
     response = openai.Completion.create(
         engine="text-davinci-002",
         prompt=query,

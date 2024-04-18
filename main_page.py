@@ -10,42 +10,40 @@ st.title("_Budget Bite_")
 st.sidebar.markdown("_Budget Bite_")
 
 st.header("Welcome to _Budget Bite!_", divider="rainbow")
-st.subheader("AI-Powered Smart Meal Solutions for Students")
+st.subheader("Smart Meal Solutions for Students")
+
+
+# Create buttons
+#weekly_budget = st.radio('Select Budget (per week)', ['$50', '$75', '$100'])
+weekly_budget = st.number_input('Please enter your weekly budget in dollars:', min_value=0, max_value=200, value=50, step=5)
+
+diet_type = st.radio('Diet Type:', ['Vegan', 'Vegetarian', 'Eggetarian', 'Pescatarian', 'Non-Vegetarian', 'Mediteranian', 'Paleo',])
+
+dietary_preferneces = st.radio('Dietary Preferences:', ['Balanced Nutrition', 'Low-carb', 'Atkins (High Protein)', 'Ketogenic (High Fat)'])
+
+exclusions = st.multiselect('Dietary Exclusions:', ['Dairy', 'Gluten', 'Pork', 'Fish', 'Beef', 'Nuts'], ['Dairy', 'Gluten', 'Pork', 'Fish', 'Beef', 'Nuts'] )
+delimiter = ', '
+
+exclusion_string = delimiter.join(exclusions)
+
+#openai.api_key = os.environ["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"]
 
 client = OpenAI(api_key="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")
+menu = ""
 
-
-
-prompt = "Provide weekly meal plan"
-
-with st.form(key='columns_in_form'):
-    c1, c2, c3, c4 = st.columns(4)
-    with c1:
-        weekly_budget = st.number_input('Please enter your weekly budget in dollars:', min_value=0, max_value=200, value=50, step=5)
-    with c2:
-        diet_type = st.radio('Diet Type:', ['Vegan', 'Vegetarian', 'Pescatarian', 'Non-Vegetarian', 'Mediteranian', 'Paleo',])
-    with c3:
-        dietary_preferneces = st.radio('Dietary Preferences:', ['Balanced Nutrition', 'Low-carb', 'Atkins (High Protein)', 'Ketogenic (High Fat)'])
-    with c4:
-        exclusions = st.multiselect('Dietary Exclusions:', ['Dairy', 'Gluten', 'Pork', 'Fish', 'Beef', 'Nuts'], ['Dairy', 'Gluten', 'Pork', 'Fish', 'Beef', 'Nuts'] )
-    
-    submitted = st.form_submit_button(label = 'Submit')
-    if submitted:
-        delimiter = ', '
-        exclusion_string = delimiter.join(exclusions)
-        # create a wrapper function
-        def get_completion(prompt, model="gpt-3.5-turbo"):
-            completion = client.chat.completions.create(
-                model=model,
-                messages=[
-                {"role":"system",
-                 "content": "Step1: Your job is to provide weekly meal plans for a budget of" + 
-                str(weekly_budget) +"that are" + diet_type + "and are" + dietary_preferneces + ". Exclude the ingredients mentioned in" + exclusion_string + "and include price for each meal and a rolling total for each day. Use the format: Breakfast: Oatmeal, $1.50, Lunch: Salad, $3.00, Dinner: Pasta, $4.50. Stop when the total exceeds the budget."},
-                {"role": "user",
-                 "content": prompt},
-                ]
-            )
-            return completion.choices[0].message.content
+# create a wrapper function
+def get_completion(prompt, model="gpt-3.5-turbo"):
+   completion = client.chat.completions.create(
+        model=model,
+        messages=[
+        {"role":"system",
+         "content": "Step1: Your job is to provide weekly meal plans for a budget of" + 
+         str(weekly_budget) +"that are" + diet_type + "and are" + dietary_preferneces + ". Exclude the ingredients mentioned in" + exclusion_string + "and include price for each meal and a rolling total for each day. Use the format: Breakfast: Oatmeal, $1.50, Lunch: Salad, $3.00, Dinner: Pasta, $4.50. Stop when the total exceeds the budget."},
+        {"role": "user",
+         "content": prompt},
+        ]
+    )
+   return completion.choices[0].message.content
 
         st.write(get_completion(prompt))
 
