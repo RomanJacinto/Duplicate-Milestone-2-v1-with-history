@@ -5,44 +5,73 @@ from openai import OpenAI
 import pandas as pd
 import requests
 
+st.set_page_config(layout="wide")
 st.title("_Budget Bite_")
 st.sidebar.markdown("_Budget Bite_")
 
 st.header("Welcome to _Budget Bite!_", divider="rainbow")
-st.subheader("Smart Meal Solutions for Students")
+st.subheader("AI-Powered Smart Meal Solutions for Students")
+
+client = OpenAI(api_key="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")
 
 
-# Create buttons
-#weekly_budget = st.radio('Select Budget (per week)', ['$50', '$75', '$100'])
-weekly_budget = st.number_input('Please enter your weekly budget in dollars:', min_value=0, max_value=200, value=50, step=5)
 
-diet_type = st.radio('Diet Type:', ['Vegan', 'Vegetarian', 'Eggetarian', 'Pescatarian', 'Non-Vegetarian', 'Mediteranian', 'Paleo',])
+prompt = "Provide weekly meal plan"
 
-dietary_preferneces = st.radio('Dietary Preferences:', ['Balanced Nutrition', 'Low-carb', 'Atkins (High Protein)', 'Ketogenic (High Fat)'])
+with st.form(key='columns_in_form'):
+    c1, c2, c3, c4 = st.columns(4)
+    with c1:
+        weekly_budget = st.number_input('Please enter your weekly budget in dollars:', min_value=0, max_value=200, value=50, step=5)
+    with c2:
+        diet_type = st.radio('Diet Type:', ['Vegan', 'Vegetarian', 'Pescatarian', 'Non-Vegetarian', 'Mediteranian', 'Paleo',])
+    with c3:
+        dietary_preferneces = st.radio('Dietary Preferences:', ['Balanced Nutrition', 'Low-carb', 'Atkins (High Protein)', 'Ketogenic (High Fat)'])
+    with c4:
+        exclusions = st.multiselect('Dietary Exclusions:', ['Dairy', 'Gluten', 'Pork', 'Fish', 'Beef', 'Nuts'], ['Dairy', 'Gluten', 'Pork', 'Fish', 'Beef', 'Nuts'] )
+    
+    submitted = st.form_submit_button(label = 'Submit')
+    if submitted:
+        delimiter = ', '
+        exclusion_string = delimiter.join(exclusions)
+        # create a wrapper function
+        def get_completion(prompt, model="gpt-3.5-turbo"):
+            completion = client.chat.completions.create(
+                model=model,
+                messages=[
+                {"role":"system",
+                 "content": "Step1: Your job is to provide weekly meal plans for a budget of" + 
+                str(weekly_budget) +"that are" + diet_type + "and are" + dietary_preferneces + ". Exclude the ingredients mentioned in" + exclusion_string + "and include price for each meal and a rolling total for each day. Use the format: Breakfast: Oatmeal, $1.50, Lunch: Salad, $3.00, Dinner: Pasta, $4.50. Stop when the total exceeds the budget."},
+                {"role": "user",
+                 "content": prompt},
+                ]
+            )
+            return completion.choices[0].message.content
 
-exclusions = st.multiselect('Dietary Exclusions:', ['Dairy', 'Gluten', 'Pork', 'Fish', 'Beef', 'Nuts'], ['Dairy', 'Gluten', 'Pork', 'Fish', 'Beef', 'Nuts'] )
-delimiter = ', '
+        st.write(get_completion(prompt))
 
-exclusion_string = delimiter.join(exclusions)
+
+col1, col2, col3, col4 = st.columns(4)
+
+with col1:
+    button1 = st.button('Grocery List')
+
+with col2:
+    button2 = st.button('Nearest Food Bank')
+
+with col3:
+    button3 = st.button('Nutritional Information')
+
+with col4:
+    button4 = st.button('Recipes')
 
 #openai.api_key = os.environ["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"]
 
-client = OpenAI(api_key="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")
+
+
+
 menu = ""
 
-# create a wrapper function
-def get_completion(prompt, model="gpt-3.5-turbo"):
-   completion = client.chat.completions.create(
-        model=model,
-        messages=[
-        {"role":"system",
-         "content": "Step1: Your job is to provide weekly meal plans for a budget of" + 
-         str(weekly_budget) +"that are" + diet_type + "and are" + dietary_preferneces + ". Exclude the ingredients mentioned in" + exclusion_string + "and include price for each meal and a rolling total for each day. Use the format: Breakfast: Oatmeal, $1.50, Lunch: Salad, $3.00, Dinner: Pasta, $4.50. Stop when the total exceeds the budget."},
-        {"role": "user",
-         "content": prompt},
-        ]
-    )
-   return completion.choices[0].message.content
+
 
 def get_ingredients(prompt, model="gpt-3.5-turbo"):
    completion = client.chat.completions.create(
@@ -60,44 +89,44 @@ def get_ingredients(prompt, model="gpt-3.5-turbo"):
    
     
 
-prompt = "Provide weekly meal plan"
+
 
 # create our streamlit app
 
-with st.form("my_form"):
+#with st.form("my_form"):
       
-    submitted = st.form_submit_button("Submit")
+    #submitted = st.form_submit_button(label = "Submit")
     
-    if submitted:
-        menu = get_completion(prompt)
-        st.write(menu)
+    #if submitted:
+        #menu = get_completion(prompt)
+        #st.write(menu)
         
         # Google Maps 
-        st.write("Would you like directions to the nearest food bank to stay under budget?")
-        zip_code = st.number_input('Please enter your zip code:', min_value=501, max_value=99950, value=95192, step=None)
+        #st.write("Would you like directions to the nearest food bank to stay under budget?")
+        #zip_code = st.number_input('Please enter your zip code:', min_value=501, max_value=99950, value=95192, step=None)
         # Function to get directions to the nearest food bank
-        def get_directions(zip_code):
+        #def get_directions(zip_code):
             # Make a request to the Google Maps Directions API
-            response = requests.get(f"https://maps.googleapis.com/maps/api/directions/json?origin={zip_code}&destination=food+bank&key=AIzaSyDlb7cyGgePykG4hzZm4rHHPVOjMx7Sop0")
+            #response = requests.get(f"https://maps.googleapis.com/maps/api/directions/json?origin={zip_code}&destination=food+bank&key=AIzaSyDlb7cyGgePykG4hzZm4rHHPVOjMx7Sop0")
 
             # Parse the JSON response
-            data = response.json()
+            #data = response.json()
 
             # Extract the directions from the response
-            directions = data["routes"][0]["legs"][0]["steps"]
+            #directions = data["routes"][0]["legs"][0]["steps"]
 
             # Return the directions
-            return directions
+            #return directions
         
         # Check if the user wants directions to the nearest food bank
-        if st.checkbox("Get Directions to Nearest Food Bank"):
-            directions = get_directions(zip_code)
-            st.write("Directions:")
-            for step in directions:
-                st.write(step["html_instructions"])
+        #if st.checkbox("Get Directions to Nearest Food Bank"):
+            #directions = get_directions(zip_code)
+            #st.write("Directions:")
+            #for step in directions:
+                #st.write(step["html_instructions"])
 
         # Get the ingredients
-        st.subheader("Here's a shopping list for this menu:")
-        grocery_list = str(get_ingredients(menu))
-        st.write(grocery_list)
+        #st.subheader("Here's a shopping list for this menu:")
+        #grocery_list = str(get_ingredients(menu))
+        #st.write(grocery_list)
         
