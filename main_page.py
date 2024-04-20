@@ -285,6 +285,71 @@ with st.form(key='columns_in_form'):
                 five_day_recipes = get_completion(prompt)
                 st.write(five_day_recipes)
 
+st.header("Or")
+st.subheader("Enter a list of ingredients in you kitchen and get a recipe inspiration")
+ingredient_list_prompt = st.chat_input("Enter a list of ingredients separated by commas:")
+if ingredient_list_prompt:
+    cln1, cln2, cln3 = st.columns(3)
+    with cln1:
+        st.write("Here's a recipe inspiration for you:")
+        # create a wrapper function
+        def get_completion(prompt, model="gpt-3.5-turbo"):
+            completion = client.chat.completions.create(
+                model=model,
+                messages=[
+                {"role":"system",
+                "content": "Step1: Your job is to provide a recipe for the ingredients mentioned in the prompt. The recipe should list all ingredients and steps to prepare the dish. Use the format: Name of the recipe, a list of ingredients, and step by step instructions."},
+                {"role": "user",
+                "content":prompt},
+                ]
+            )
+            return completion.choices[0].message.content
+        recipe = get_completion(ingredient_list_prompt)
+        st.write(recipe)
+
+        # get recipe name
+        def get_recipe_name(prompt):
+            completion = client.chat.completions.create(
+                model="gpt-3.5-turbo",
+                messages=[
+                {"role":"system",
+                "content": "Step1: Your job is to provide the name of the recipe from the given prompt. The output should be just the name of the recipe, do not include any ingredients or instructions."},
+                {"role": "user",
+                "content": prompt},
+                ]
+            )
+            return completion.choices[0].message.content
+        recipe_name = get_recipe_name(recipe)
+
+    with cln2:
+        # generate image for the recipe
+        response = client.images.generate(
+            model="dall-e-2",
+            prompt=recipe_name,
+            size="512x512",
+            quality="standard",
+            n=1,
+        )
+        image_url = response.data[0].url
+        st.image(image_url, caption=recipe, use_column_width=True)
+
+    with cln3: 
+        # get nutritional information
+        def get_nutrition(prompt):
+            completion = client.chat.completions.create(
+                model="gpt-3.5-turbo",
+                messages=[
+                {"role":"system",
+                "content": "You are a nutritionist and your job is to provide the nutritional information for the recipe asked by the prompt. The information should include the both macro and micro nutrients. Use the USDA database for the nutritional information. The format of the output should be in a table with the following columns: Nutrient, Amount per serving, Daily Value. The daily value should be calculated based on a 2000 calorie diet."},
+                {"role": "user",
+                "content": prompt},
+                ]
+            )
+            return completion.choices[0].message.content
+    
+        prompt = get_nutrition(recipe)
+        st.write(get_nutrition(prompt))
+
 
 #openai.api_key = os.environ["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"]
 
