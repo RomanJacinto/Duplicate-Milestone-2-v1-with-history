@@ -10,12 +10,46 @@ openai.api_key = os.environ["OPENAI_API_KEY"]
 client = OpenAI()
 #client = OpenAI(api_key="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")
 
-st.set_page_config(layout="wide")
-st.title("_Budget Bite_")
-st.sidebar.markdown("_Budget Bite_")
+import streamlit as st
 
-st.header("Welcome to _Budget Bite!_", divider="rainbow")
-st.subheader("AI-Powered Smart Meal Solutions for Students")
+def main():
+    # Set the page configuration as the very first command
+    st.set_page_config(layout="wide")
+
+    # Custom CSS to overwrite Streamlit's default settings
+    st.markdown(
+        '''
+        <style>
+            .css-18e3th9 {
+                background-color: #f0fff4; /* Light green background */
+            }
+            .css-1d391kg {
+                color: #006400; /* Dark green text for titles */
+            }
+            .stButton>button {
+                color: white;
+                background-color: #32cd32; /* Lime Green button */
+            }
+            .stRadio>label {
+                color: #2e8b57; /* Sea Green text for radio buttons */
+            }
+            .stMultiSelect>div>div {
+                background-color: #8fbc8f; /* Dark Sea Green background for multi-select */
+            }
+        </style>
+        ''',
+        unsafe_allow_html=True
+    )
+
+    st.title("_Budget Bite_")
+    st.sidebar.markdown("_Budget Bite_")
+    st.header("Welcome to _Budget Bite!_", divider="rainbow")
+    st.subheader("AI-Powered Smart Meal Solutions for Students")
+
+    # Define the rest of your application here, with your inputs and logic
+
+if __name__ == "__main__":
+    main()
 
 # Create buttons
 with st.form(key='columns_in_form'):
