@@ -313,7 +313,7 @@ if ingredient_list_prompt:
                 model="gpt-3.5-turbo",
                 messages=[
                 {"role":"system",
-                "content": "Step1: Your job is to provide the name of the recipe from the given prompt. The output should be just the name of the recipe, do not include any ingredients or instructions."},
+                "content": "Your job is to provide the name of the recipe from the given recipe. The output should be just the name of the recipe, exclude the ingredients or instructions. Only return the name of the recipe."},
                 {"role": "user",
                 "content": prompt},
                 ]
@@ -331,7 +331,7 @@ if ingredient_list_prompt:
             n=1,
         )
         image_url = response.data[0].url
-        st.image(image_url, caption=recipe, use_column_width=True)
+        st.image(image_url, caption=recipe_name, use_column_width=True)
 
     with cln3: 
         # get nutritional information
