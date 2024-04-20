@@ -219,6 +219,7 @@ with st.form(key='columns_in_form'):
             
             prompt = get_dinner(dinner)
             st.write(get_dinner(prompt))
+            st.write("NOTE: This recipe is AI-generated and Budget Bite has not verified it for accuracy or safety. It may contain errors. Always use your best judgement when making AI-generated dishes.")
 
             # get nutritional information
             def get_nutrition(prompt):
@@ -349,6 +350,7 @@ if ingredient_list_prompt:
     
         prompt = get_nutrition(recipe)
         st.write(get_nutrition(prompt))
+        st.write("NOTE: This recipe is AI-generated and Budget Bite has not verified it for accuracy or safety. It may contain errors. Always use your best judgement when making AI-generated dishes.")
 
 
 #openai.api_key = os.environ["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"]
