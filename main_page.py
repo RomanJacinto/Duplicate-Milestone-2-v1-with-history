@@ -41,7 +41,7 @@ def main():
         unsafe_allow_html=True
     )
 
-    st.title("_Budget Bite_")
+    st.image("https://i.ibb.co/vDgcdkz/250x200.png")
     st.sidebar.markdown("_Budget Bite_")
     st.header("Welcome to _Budget Bite!_", divider="rainbow")
     st.subheader("AI-Powered Smart Meal Solutions for Students")
