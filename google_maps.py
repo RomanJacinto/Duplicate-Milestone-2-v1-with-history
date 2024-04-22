@@ -1,23 +1,22 @@
-import googlemaps
-from geopy.geocoders import Nominatim
+import pandas as pd
+import streamlit as st
 
-# Use your own Google Maps API key here
-gmaps = googlemaps.Client(key='YOUR_API_KEY')
+# Load the CSV data into a pandas DataFrame
+df = pd.read_csv(r"C:\Users\Roman\Desktop\FoodBanks.csv")
 
-# Initialize geolocator
-geolocator = Nominatim(user_agent="geoapiExercises")
+# Convert Latitude and Longitude to float
+df['Latitude'] = df['Latitude'].astype(float)
+df['Longitude'] = df['Longitude'].astype(float)
 
-def find_food_banks(zip_code):
-    # Get location coordinates from zip code
-    location = geolocator.geocode(zip_code)
-    coordinates = f"{location.latitude}, {location.longitude}"
+# Ask the user to enter a zip code
+zip_code = st.text_input('Enter your zip code to find the nearest food banks in your area:')
 
-    # Search for food banks
-    result = gmaps.places_nearby(location=coordinates, radius=5000, keyword='food bank')
+# Filter the DataFrame based on the zip code
+df_filtered = df[df['Zip Code'] == zip_code]
 
-    # Print the results
-    for place in result['results']:
-        print(place['name'], place['vicinity'])
+# Create a map centered on the first location of the filtered data
+map_data = pd.DataFrame(df_filtered[['Latitude', 'Longitude']], columns=['lat', 'lon'])
+st.map(map_data)
 
-# Test the function
-find_food_banks("95112")
+# Display the Business Name of the filtered data
+st.write(df_filtered[['Business Name', 'Address', 'Phone Number', 'Email']])
