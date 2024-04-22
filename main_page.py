@@ -5,10 +5,10 @@ from openai import OpenAI
 import pandas as pd
 import requests
 
-openai.api_key = os.environ["OPENAI_API_KEY"]
+#openai.api_key = os.environ["APIKEY"]
 
-client = OpenAI()
-#client = OpenAI(api_key="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")
+#client = OpenAI()
+client = OpenAI(api_key="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")
 
 import streamlit as st
 
@@ -238,6 +238,7 @@ with st.form(key='columns_in_form'):
             st.write(get_nutrition(prompt))
 
         st.subheader("Would you like a three day or seven day meal plan?")
+        
 
         coln1, coln2 = st.columns(2)
         with coln1:
