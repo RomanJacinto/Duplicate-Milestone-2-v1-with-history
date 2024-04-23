@@ -11,7 +11,7 @@ with col2:
     st.header("AI-Powered Smart Meal Solutions for Students", divider="rainbow")
 
 # Load the CSV file
-df = pd.read_csv(r"C:\Users\Roman\Desktop\FoodBanks.csv")
+df = pd.read_csv("FoodBanks.csv")
 
 # Rename the columns
 df = df.rename(columns={'Latitude': 'lat', 'Longitude': 'lon'})
