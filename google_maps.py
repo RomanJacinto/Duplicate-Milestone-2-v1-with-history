@@ -17,10 +17,11 @@ if zip_code:
     # Filter the DataFrame based on the user's input
     filtered_df = df[df['Zip Code'] == int(zip_code)]
 
-    # Plot the latitude and longitude on a map
-    st.map(filtered_df)
+    if filtered_df.empty:
+        st.write("No food banks found in your area.")
+    else:
+        # Plot the latitude and longitude on a map
+        st.map(filtered_df)
 
-    # Display the Business Name of the filtered data
-    st.write(filtered_df[['Business Name', 'Address', 'Phone Number', 'Email']])
-else:
-    st.write("No food banks found in your area.")
+        # Display the Business Name of the filtered data
+        st.write(filtered_df[['Business Name', 'Address', 'Phone Number', 'Email']])
