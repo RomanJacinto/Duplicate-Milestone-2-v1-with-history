@@ -8,7 +8,10 @@ import requests
 #openai.api_key = os.environ["APIKEY"]
 
 #client = OpenAI()
-client = OpenAI(api_key="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")
+client = OpenAI(api_key="APIKEY")
+
+
+
 
 import streamlit as st
 
@@ -36,6 +39,7 @@ def main():
             .stMultiSelect>div>div {
                 background-color: #8fbc8f; /* Dark Sea Green background for multi-select */
             }
+        
         </style>
         ''',
         unsafe_allow_html=True

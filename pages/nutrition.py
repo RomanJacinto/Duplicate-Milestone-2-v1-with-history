@@ -4,7 +4,7 @@ import streamlit as st
 from openai import OpenAI
 
 
-client = OpenAI(api_key='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')
+client = OpenAI(api_key='APIKEY')
 
 # Custom HTML/CSS for the banner
 custom_html = """
