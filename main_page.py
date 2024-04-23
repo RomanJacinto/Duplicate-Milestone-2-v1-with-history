@@ -10,54 +10,17 @@ import requests
 #client = OpenAI()
 client = OpenAI(api_key="APIKEY")
 
-
-
-
-import streamlit as st
-
-def main():
-    # Set the page configuration as the very first command
-    st.set_page_config(layout="wide")
-
-    # Custom CSS to overwrite Streamlit's default settings
-    st.markdown(
-        '''
-        <style>
-            .css-18e3th9 {
-                background-color: #f0fff4; /* Light green background */
-            }
-            .css-1d391kg {
-                color: #006400; /* Dark green text for titles */
-            }
-            .stButton>button {
-                color: white;
-                background-color: #32cd32; /* Lime Green button */
-            }
-            .stRadio>label {
-                color: #2e8b57; /* Sea Green text for radio buttons */
-            }
-            .stMultiSelect>div>div {
-                background-color: #8fbc8f; /* Dark Sea Green background for multi-select */
-            }
-        </style>
-        ''',
-        unsafe_allow_html=True
-    )
-
+st.set_page_config(layout="wide", initial_sidebar_state="collapsed")
+col1, col2 = st.columns([0.40, 4])
+with col1:
     st.image("https://i.ibb.co/vDgcdkz/250x200.png")
 with col2:
     st.header("AI-Powered Smart Meal Solutions for Students", divider="rainbow")
 
+
+
  
 st.subheader("Generate a Recipe from Ingredients in Your Kitchen")
-subheader_alignment = """
-<style>
-#the-subheader {
-    text-align: center
-}
-</style>
-"""
-st.markdown(subheader_alignment, unsafe_allow_html=True)
 
 ingredient_list_prompt = st.text_input(label="Please enter a list of ingredients separated by commas:")
 if st.button("Generate"):
