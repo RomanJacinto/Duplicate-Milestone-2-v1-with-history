@@ -6,6 +6,15 @@ from openai import OpenAI
 
 client = OpenAI(api_key='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')
 
+# Set page title and favicon.
+st.set_page_config(layout="wide")
+#create columns for welcome message and logo
+col1, col2 = st.columns([0.40, 4])
+with col1:
+    st.image("https://i.ibb.co/vDgcdkz/250x200.png")
+with col2:
+    st.header("AI-Powered Smart Meal Solutions for Students", divider="rainbow")
+    
 # Custom HTML/CSS for the banner
 custom_html = """
 <div class="banner">
