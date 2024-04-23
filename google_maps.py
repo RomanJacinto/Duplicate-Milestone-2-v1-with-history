@@ -1,22 +1,26 @@
 import pandas as pd
 import streamlit as st
 
-# Load the CSV data into a pandas DataFrame
+# Load the CSV file
 df = pd.read_csv(r"C:\Users\Roman\Desktop\FoodBanks.csv")
 
-# Convert Latitude and Longitude to float
-df['Latitude'] = df['Latitude'].astype(float)
-df['Longitude'] = df['Longitude'].astype(float)
+# Rename the columns
+df = df.rename(columns={'Latitude': 'lat', 'Longitude': 'lon'})
 
-# Ask the user to enter a zip code
+# Create a streamlit application
+st.title('Food Bank Locator')
+
+# Ask the user to input a zip code
 zip_code = st.text_input('Enter your zip code to find the nearest food banks in your area:')
 
-# Filter the DataFrame based on the zip code
-df_filtered = df[df['Zip Code'] == zip_code]
+if zip_code:
+    # Filter the DataFrame based on the user's input
+    filtered_df = df[df['Zip Code'] == int(zip_code)]
 
-# Create a map centered on the first location of the filtered data
-map_data = pd.DataFrame(df_filtered[['Latitude', 'Longitude']], columns=['lat', 'lon'])
-st.map(map_data)
+    # Plot the latitude and longitude on a map
+    st.map(filtered_df)
 
-# Display the Business Name of the filtered data
-st.write(df_filtered[['Business Name', 'Address', 'Phone Number', 'Email']])
+    # Display the Business Name of the filtered data
+    st.write(filtered_df[['Business Name', 'Address', 'Phone Number', 'Email']])
+else:
+    st.write("No food banks found in your area.")
