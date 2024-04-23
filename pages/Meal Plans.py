@@ -26,7 +26,7 @@ with st.form(key='columns_in_form'):
     with c1:
        weekly_budget = st.number_input('Please enter your daily budget in dollars:', min_value=0, max_value=200, value=None, step=5, placeholder="Please enter a number")
     with c2:
-       diet_type = st.radio('Diet Type:', ['Vegan', 'Vegetarian', 'Pescatarian', 'Non-Vegetarian', 'Mediteranian', 'Paleo',])
+       diet_type = st.radio('Diet Type:', ['Vegan', 'Vegetarian', 'Pescatarian', 'Non-Vegetarian', 'Paleo',])
     with c3:    
        dietary_preferneces = st.radio('Dietary Preferences:', ['Balanced Nutrition', 'Low-carb', 'Atkins (High Protein)', 'Ketogenic (High Fat)'])
     with c4:
