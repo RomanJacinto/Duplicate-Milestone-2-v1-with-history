@@ -4,30 +4,29 @@ import streamlit as st
 from openai import OpenAI
 import pandas as pd
 import requests
+import base64
 
-#openai.api_key = os.environ["APIKEY"]
-
-#client = OpenAI()
-client = OpenAI(api_key="APIKEY")
+openai.api_key = os.environ["OPENAI_API_KEY"]
+client = OpenAI()
 
 # Set page config
 st.set_page_config(layout="wide", initial_sidebar_state="collapsed")
 
 # Define the background style using a direct image URL
-background_url = "https://i.imgur.com/ycNTyh7.png"
+#background_url = "https://i.imgur.com/ycNTyh7.png"
 
-background_style = f"""
-<style>
-    .stApp {{
-        background-image: url('{background_url}');
-        background-size: cover;
-        background-position: center;
-    }}
-</style>
-"""
+#background_style = f"""
+#<style>
+    #.stApp {{
+        #background-image: url('{background_url}');
+        #background-size: cover;
+        #background-position: center;
+    #}}
+#</style>
+#"""
 
 # Apply the background style to the app
-st.markdown(background_style, unsafe_allow_html=True)
+#st.markdown(background_style, unsafe_allow_html=True)
 
 # Define the layout
 col1, col2 = st.columns([0.40, 4])
@@ -36,7 +35,45 @@ with col1:
 with col2:
     st.header("AI-Powered Smart Meal Solutions for Students", divider="rainbow")
 
-# Other components and logic...
+# Computer vision model
+def encode_image(image_path):
+  with open(image_path, "rb") as image_file:
+    return base64.b64encode(image_file.read()).decode('utf-8')
+
+uploaded_file = st.file_uploader("Choose a picture file", type=["png", "jpg", "jpeg"])
+
+image_path = "images/cloud.png"
+
+def photo_rec(image_path):
+    base64_image = encode_image(image_path)
+    response = client.chat.completions.create(
+        model="gpt-4-turbo",
+        messages=[
+            {
+                "role": "user",
+                "content": [
+                    {"type": "text", "text": "What’s in this image in terms of food?"},
+                    {
+                        "type": "image_url",
+                        "image_url": {
+                            "url": f"data:image/png;base64,{base64_image}"
+                        }
+                    }
+                ]
+            }
+        ],
+        max_tokens=300,
+    )
+    return response.choices[0].message.content
+
+if uploaded_file is not None:
+    with open(os.path.join('images',uploaded_file.name), 'wb') as f:
+        f.write(uploaded_file.getbuffer())
+    st.success("Saved File:{} to images".format(uploaded_file.name))
+    image_path = os.path.join('images',uploaded_file.name)
+    st.image(image_path)
+    content = photo_rec(image_path)
+    st.write(content)
  
 st.subheader("Generate a Recipe from Ingredients in Your Kitchen")
 
@@ -102,88 +139,7 @@ if st.button("Generate"):
     
         prompt = get_nutrition(recipe)
         st.write(get_nutrition(prompt))
-        st.write("NOTE: This recipe is AI-generated and Budget Bite has not verified it for accuracy or safety. It may contain errors. Always use your best judgement when making AI-generated dishes.")
+        st.markdown('''
+        :red[**NOTE: This recipe is AI-generated and Budget Bite has not verified it for accuracy or safety. It may contain errors. Always use your best judgement when making AI-generated dishes.**]''')
 
 
-#openai.api_key = os.environ["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"]
-
-#menu = ""
-
-
-#openai.api_key = os.environ["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"]
-
-#def get_completion(prompt, model="gpt-3.5-turbo"):
-            #completion = client.chat.completions.create(
-                    #model=model,
-                    #messages=[
-                    #{"role":"system",
-                    #"content": "Step1: Your job is to provide weekly meal plans for a budget of" + 
-                    #str(weekly_budget) +"that are" + diet_type + "and are" + dietary_preferneces + ". Exclude the ingredients mentioned in" + exclusion_string + "and include price for each meal and a rolling total for each day. Use the format: Breakfast: Oatmeal, $1.50, Lunch: Salad, $3.00, Dinner: Pasta, $4.50. Stop when the total exceeds the budget."},
-                    #{"role": "user",
-                    #"content": prompt},
-                    #]
-                #)
-            #return completion.choices[0].message.content
-
-
-#menu = ""
-
-
-
-#def get_ingredients(prompt, model="gpt-3.5-turbo"):
-   #completion = client.chat.completions.create(
-        #model=model,
-        #messages=[
-        #{"role":"system",
-         #"content": "Step1: Your job is to make a list of every individual ingredient in this text in a numbered list:" + 
-        # str(menu) + "exclude any duplicates and add up the total price for the entire grocery list."},
-        #{"role": "user",
-        # "content": prompt},
-       # ]
-    #)
-   #return completion.choices[0].message.content
-
-   
-    
-
-
-
-# create our streamlit app
-
-#with st.form("my_form"):
-      
-    #submitted = st.form_submit_button(label = "Submit")
-    
-    #if submitted:
-        #menu = get_completion(prompt)
-        #st.write(menu)
-        
-        # Google Maps 
-        #st.write("Would you like directions to the nearest food bank to stay under budget?")
-        #zip_code = st.number_input('Please enter your zip code:', min_value=501, max_value=99950, value=95192, step=None)
-        # Function to get directions to the nearest food bank
-        #def get_directions(zip_code):
-            # Make a request to the Google Maps Directions API
-            #response = requests.get(f"https://maps.googleapis.com/maps/api/directions/json?origin={zip_code}&destination=food+bank&key=AIzaSyDlb7cyGgePykG4hzZm4rHHPVOjMx7Sop0")
-
-            # Parse the JSON response
-            #data = response.json()
-
-            # Extract the directions from the response
-            #directions = data["routes"][0]["legs"][0]["steps"]
-
-            # Return the directions
-            #return directions
-        
-        # Check if the user wants directions to the nearest food bank
-        #if st.checkbox("Get Directions to Nearest Food Bank"):
-            #directions = get_directions(zip_code)
-            #st.write("Directions:")
-            #for step in directions:
-                #st.write(step["html_instructions"])
-
-        # Get the ingredients
-        #st.subheader("Here's a shopping list for this menu:")
-        #grocery_list = str(get_ingredients(menu))
-        #st.write(grocery_list)
-        

@@ -188,8 +188,7 @@ with st.form(key='columns_in_form'):
             
             prompt = get_dinner(dinner)
             st.write(get_dinner(prompt))
-            st.write("NOTE: This recipe is AI-generated and Budget Bite has not verified it for accuracy or safety. It may contain errors. Always use your best judgement when making AI-generated dishes.")
-
+            
             # get nutritional information
             def get_nutrition(prompt):
                 completion = client.chat.completions.create(
@@ -205,51 +204,53 @@ with st.form(key='columns_in_form'):
             
             prompt = get_nutrition(dinner)
             st.write(get_nutrition(prompt))
+        st.markdown('''
+        :red[**NOTE: This recipe is AI-generated and Budget Bite has not verified it for accuracy or safety. It may contain errors. Always use your best judgement when making AI-generated dishes.**]''')
             
-        st.subheader("Would you like a three day or seven day meal plan?")
-        coln1, coln2 = st.columns(2)
-        with coln1:
-            submitted_three_day = st.checkbox(label = "Yes, I would like a three day meal plan")
-            
-            if submitted_three_day:
-                st.write("Here's a three day meal plan for you:")
-                three_day_budget = weekly_budget * 3
-                # create a wrapper function
-                def get_completion(prompt, model="gpt-3.5-turbo"):
-                    completion = client.chat.completions.create(
-                            model=model,
-                            messages=[
-                            {"role":"system",
-                            "content": "Step1: Your job is to provide a three day meal plan for a budget of" + 
-                            str(three_day_budget) +"that are" + diet_type + "and are" + dietary_preferneces + ". Exclude the ingredients mentioned in" + exclusion_string + "and include price for each meal. Use the format: Breakfast: Oatmeal, $1.50, Lunch: Salad, $3.00, Dinner: Pasta, $4.50. Stop when the total exceeds the budget and tell the user to reach out to the nearest food bank to stay under budget."},
-                            {"role": "user",
-                            "content": prompt},
-                            ]
-                        )
-                    return completion.choices[0].message.content
-                prompt = "provide a three day meal plan"
-                three_day_recipes = get_completion(prompt)
-                st.write(three_day_recipes)
+    st.subheader("Would you like a three day or seven day meal plan?")
+    coln1, coln2 = st.columns(2)
+    with coln1:
+        submitted_three_day = st.form_submit_button(label= "Yes, I would like a three day meal plan")
         
-        with coln2:
-            submitted_seven_day = st.checkbox(label = "Yes, I would like a seven day meal plan")
-            
-            if submitted_seven_day:
-                st.write("Here's a seven day meal plan for you:")
-                seven_day_budget = weekly_budget * 7
-                # create a wrapper function
-                def get_completion(prompt, model="gpt-3.5-turbo"):
-                    completion = client.chat.completions.create(
-                            model=model,
-                            messages=[
-                            {"role":"system",
-                            "content": "Step1: Your job is to provide a seven day meal plan for a budget of" + 
-                            str(seven_day_budget) +"that are" + diet_type + "and are" + dietary_preferneces + ". Exclude the ingredients mentioned in" + exclusion_string + "and include price for each meal. Use the format: Breakfast: Oatmeal, $1.50, Lunch: Salad, $3.00, Dinner: Pasta, $4.50. Stop when the total exceeds the budget and tell the user to reach out to the nearest food bank to stay under budget."},
-                            {"role": "user",
-                            "content": prompt},
-                            ]
-                        )
-                    return completion.choices[0].message.content
-                prompt = "provide a five day meal plan"
-                five_day_recipes = get_completion(prompt)
-                st.write(five_day_recipes)
+        if submitted_three_day:
+            st.write("Here's a three day meal plan for you:")
+            three_day_budget = weekly_budget * 3
+            # create a wrapper function
+            def get_completion(prompt, model="gpt-3.5-turbo"):
+                completion = client.chat.completions.create(
+                        model=model,
+                        messages=[
+                        {"role":"system",
+                        "content": "Step1: Your job is to provide a three day meal plan for a budget of" + 
+                        str(three_day_budget) +"that are" + diet_type + "and are" + dietary_preferneces + ". Exclude the ingredients mentioned in" + exclusion_string + "and include price for each meal. Use the format: Breakfast: Oatmeal, $1.50, Lunch: Salad, $3.00, Dinner: Pasta, $4.50. Stop when the total exceeds the budget and tell the user to reach out to the nearest food bank to stay under budget."},
+                        {"role": "user",
+                        "content": prompt},
+                        ]
+                    )
+                return completion.choices[0].message.content
+            prompt = "provide a three day meal plan"
+            three_day_recipes = get_completion(prompt)
+            st.write(three_day_recipes)
+    
+    with coln2:
+        submitted_seven_day = st.form_submit_button(label= "Yes, I would like a seven day meal plan")
+        
+        if submitted_seven_day:
+            st.write("Here's a seven day meal plan for you:")
+            seven_day_budget = weekly_budget * 7
+            # create a wrapper function
+            def get_completion(prompt, model="gpt-3.5-turbo"):
+                completion = client.chat.completions.create(
+                        model=model,
+                        messages=[
+                        {"role":"system",
+                        "content": "Step1: Your job is to provide a seven day meal plan for a budget of" + 
+                        str(seven_day_budget) +"that are" + diet_type + "and are" + dietary_preferneces + ". Exclude the ingredients mentioned in" + exclusion_string + "and include price for each meal. Use the format: Breakfast: Oatmeal, $1.50, Lunch: Salad, $3.00, Dinner: Pasta, $4.50. Stop when the total exceeds the budget and tell the user to reach out to the nearest food bank to stay under budget."},
+                        {"role": "user",
+                        "content": prompt},
+                        ]
+                    )
+                return completion.choices[0].message.content
+            prompt = "provide a seven day meal plan"
+            seven_day_recipes = get_completion(prompt)
+            st.write(seven_day_recipes)

@@ -13,3 +13,12 @@ with col1:
     st.image("https://i.ibb.co/vDgcdkz/250x200.png")
 with col2:
     st.header("AI-Powered Smart Meal Solutions for Students", divider="rainbow")
+
+cl1, cl2, cl3, cl4 = st.columns([1, 1, 1, 1])
+with cl1:
+    st.image("images/Spaghetti_Carbonara.jpg")
+    carbonara = st.button("Spaghetti Carbonara")
+    if carbonara:
+        link = '[GitHub](http://github.com)'
+        st.markdown(link, unsafe_allow_html=True)
+       
