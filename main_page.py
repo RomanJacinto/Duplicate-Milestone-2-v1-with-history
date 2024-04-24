@@ -10,15 +10,33 @@ import requests
 #client = OpenAI()
 client = OpenAI(api_key="APIKEY")
 
+# Set page config
 st.set_page_config(layout="wide", initial_sidebar_state="collapsed")
+
+# Define the background style using a direct image URL
+background_url = "https://i.imgur.com/ycNTyh7.png"
+
+background_style = f"""
+<style>
+    .stApp {{
+        background-image: url('{background_url}');
+        background-size: cover;
+        background-position: center;
+    }}
+</style>
+"""
+
+# Apply the background style to the app
+st.markdown(background_style, unsafe_allow_html=True)
+
+# Define the layout
 col1, col2 = st.columns([0.40, 4])
 with col1:
     st.image("https://i.ibb.co/vDgcdkz/250x200.png")
 with col2:
     st.header("AI-Powered Smart Meal Solutions for Students", divider="rainbow")
 
-
-
+# Other components and logic...
  
 st.subheader("Generate a Recipe from Ingredients in Your Kitchen")
 
