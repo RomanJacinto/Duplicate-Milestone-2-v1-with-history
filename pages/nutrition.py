@@ -7,7 +7,7 @@ from openai import OpenAI
 client = OpenAI(api_key='APIKEY')
 
 # Set page title and favicon.
-st.set_page_config(layout="wide")
+st.set_page_config(layout="wide",initial_sidebar_state="collapsed")
 #create columns for welcome message and logo
 col1, col2 = st.columns([0.40, 4])
 with col1:

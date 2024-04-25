@@ -2,7 +2,7 @@ import pandas as pd
 import streamlit as st
 
 # Set page title and favicon.
-st.set_page_config(layout="wide")
+st.set_page_config(layout="wide",initial_sidebar_state="collapsed")
 #create columns for welcome message and logo
 col1, col2 = st.columns([0.40, 4])
 with col1:
@@ -17,7 +17,7 @@ df = pd.read_csv("static/FoodBanks.csv")
 df = df.rename(columns={'Latitude': 'lat', 'Longitude': 'lon'})
 
 # Create a streamlit application
-st.title('Food Bank Locator')
+st.header('Food Bank Locator')
 
 # Ask the user to input a zip code
 zip_code = st.text_input('Enter your zip code to find the nearest food banks in your area:')
