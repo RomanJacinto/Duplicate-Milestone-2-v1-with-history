@@ -5,13 +5,48 @@ from openai import OpenAI
 import pandas as pd
 import requests
 import base64
+from streamlit_navigation_bar import st_navbar
+import navbar
 
 
-openai.api_key = os.environ["OPENAI_API_KEY"]
-client = OpenAI()
+#openai.api_key = os.environ["APIKEY"]
+#client = OpenAI()
+
+client = OpenAI(api_key='APIKEY')
 
 # Set page config
 st.set_page_config(layout="wide", initial_sidebar_state="collapsed")
+
+pages = ["Home","Budgeted Meal Plans", "Dorm Specials", "Explore Recipes", "Nearest Food Bank", "Learn"]
+
+# Create a navigation bar
+page = st_navbar(pages)
+
+functions = {
+    "Home": navbar.home,
+    "Budgeted Meal Plans": navbar.mealplan,
+    "Dorm Specials": navbar.dorm,
+    "Explore Recipes": navbar.explore,
+    "Nearest Food Bank": navbar.bank,
+    "Learn": navbar.learn,
+    
+}
+
+go_to = functions.get(page)
+if go_to:
+    go_to()
+
+
+
+
+
+
+
+
+
+
+
+
 
 # Define the layout
 col1, col2 = st.columns([0.40, 4])
