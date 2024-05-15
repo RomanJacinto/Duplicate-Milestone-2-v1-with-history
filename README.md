@@ -28,4 +28,12 @@ Finally, education is the first step to making healthy changes stick, and the Le
 
 <h2>Screenshots</h2>
 !![01](https://github.com/IrvinLyMiffy/Milestone-2-v1/blob/main/README_Images/01.png)
+!!(https://github.com/IrvinLyMiffy/Milestone-2-v1/blob/main/README_Images/01.png)
+!(https://github.com/IrvinLyMiffy/Milestone-2-v1/blob/main/README_Images/02.png)
+!(https://github.com/IrvinLyMiffy/Milestone-2-v1/blob/main/README_Images/03.png)
+!(https://github.com/IrvinLyMiffy/Milestone-2-v1/blob/main/README_Images/04.png)
+!(https://github.com/IrvinLyMiffy/Milestone-2-v1/blob/main/README_Images/05.png)
+!(https://github.com/IrvinLyMiffy/Milestone-2-v1/blob/main/README_Images/06.png)
+
+Demo Video
 
