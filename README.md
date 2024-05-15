@@ -27,3 +27,4 @@ Finally, education is the first step to making healthy changes stick, and the Le
 
 
 <h2>Screenshots</h2>
+![Alt text](README_Images/01.png)
