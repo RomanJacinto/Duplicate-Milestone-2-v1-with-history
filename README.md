@@ -10,6 +10,7 @@ This AI application offers a practical solution tailored to the unique needs of 
 <h2>Our Solution</h2>
 <h3>Home Page</h3>
 The "Generate a Recipe from Ingredients in your Kitchen" feature on the Home Page offers users a convenient and versatile way to generate recipes based on the ingredients they have available. By simply uploading an image or typing in the list of ingredients, users can be  recommended a meal based on the given ingredients. 
+
 ![HomePage](static/HomePage.png)
 
 <h3>Budgeted Meal Plans</h3>
