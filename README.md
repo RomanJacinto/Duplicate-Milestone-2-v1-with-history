@@ -8,7 +8,7 @@ Our AI application seamlessly crafts personalized meal plans while assisting stu
 This AI application offers a practical solution tailored to the unique needs of students. With busy schedules and limited budgets, students often struggle to maintain a healthy diet while managing their finances. This application addresses both challenges by providing personalized meal plans that consider dietary preferences and financial constraints. By simplifying the meal planning process, students can save time and reduce stress, allowing them to focus more on their academic and personal pursuits. Overall, this application serves as a valuable tool for students, helping them maintain a balanced lifestyle without compromising on nutrition or breaking the bank.
 
 <h2>Our Solution</h2>
-<h4>Home Page</h4>
+<h3>Home Page</h3>
 The "Generate a Recipe from Ingredients in your Kitchen" feature on the Home Page offers users a convenient and versatile way to generate recipes based on the ingredients they have available. By simply uploading an image or typing in the list of ingredients, users can be  recommended a meal based on the given ingredients. 
 
 Image placeholder
