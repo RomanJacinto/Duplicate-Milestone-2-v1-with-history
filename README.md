@@ -44,4 +44,4 @@ The "Learn about Nutrition and Dietary Choices" page serves as a comprehensive e
 
 <h2>Demo Video</h2>
 
-[![Demo Video](static/demovideo.png)]([https://youtu.be/AwGQKb_bSLo](https://youtu.be/AwGQKb_bSLo?si=xMn5fnLb7vlYhoI6))
+[![Watch the video](https://img.youtube.com/vi/AwGQKb_bSLo/maxresdefault.jpg)](https://youtu.be/AwGQKb_bSLo)
