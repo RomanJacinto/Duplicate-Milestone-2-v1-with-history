@@ -5,7 +5,7 @@ Simplifying Food, One Recipe at a Time
 Our AI application seamlessly crafts personalized meal plans while assisting students in managing their budgets effectively.
 
 <h2>Why Budget Bite?</h2>
-This AI application offers a practical solution tailored to the unique needs of students. With busy schedules and limited budgets, students often struggle to maintain a healthy diet while managing their finances. This application addresses both challenges by providing personalized meal plans that consider dietary preferences and financial constraints. By simplifying the meal planning process, students can save time and reduce stress, allowing them to focus more on their academic and personal pursuits. Additionally, the budget management feature empowers students to make informed financial decisions, promoting financial literacy and responsible spending habits. Overall, this application serves as a valuable tool for students, helping them maintain a balanced lifestyle without compromising on nutrition or breaking the bank.
+This AI application offers a practical solution tailored to the unique needs of students. With busy schedules and limited budgets, students often struggle to maintain a healthy diet while managing their finances. This application addresses both challenges by providing personalized meal plans that consider dietary preferences and financial constraints. By simplifying the meal planning process, students can save time and reduce stress, allowing them to focus more on their academic and personal pursuits. Overall, this application serves as a valuable tool for students, helping them maintain a balanced lifestyle without compromising on nutrition or breaking the bank.
 
 <h2>Our Solution</h2>
 <h4>Home Page</h4>
