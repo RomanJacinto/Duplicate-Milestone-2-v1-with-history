@@ -21,7 +21,7 @@ The Budgeted Meal Plan feature offers users a practical tool for managing their 
 <h3>Dorm Specials</h3>
 The "Dorm Specials" page is designed specifically for students living in dorms, offering quick and easy access to recipes that are suitable for their limited cooking space, equipment, and time constraints. This page features recipes that require minimal cooking and cooking appliances. By curating recipes tailored for dorm room cooking, the page ensures that students can prepare delicious and nutritious meals using simple ingredients and minimal cooking techniques. 
 
-![DormSpecials](static/Dorm Specials.png)
+![DormSpecials](static/DormSpecials.png)
 
 <h3>Explore Recipes</h3>
 The "Explore Recipes" page serves as a repository of culinary inspiration, offering users a diverse array of recipes to try and enjoy. Whether users are looking for breakfast ideas, hearty meals, delicious desserts, or anything else, this page provides a wide selection of recipes to suit various tastes and preferences.
