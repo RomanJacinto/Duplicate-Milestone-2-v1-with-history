@@ -30,7 +30,7 @@ The "Explore Recipes" page serves as a repository of culinary inspiration, offer
 
 Users can also explore more recipes and generate recipes specifically tailored for students who have access to full kitchens.
 
-Image Placeholder
+![ExploreRecipes](static/explore2.png)
 
 <h3>Nearest Food Bank</h3>
 The "Nearest Food Bank" page offers a valuable resource for students who may be experiencing food insecurity or are in need of emergency food assistance. By simply inputting their zip code, students can quickly locate nearby food banks or food pantries where they can access essential groceries and meal provisions. This feature aims to provide immediate support to students facing financial challenges or struggling to afford nutritious food.
@@ -43,4 +43,5 @@ The "Learn about Nutrition and Dietary Choices" page serves as a comprehensive e
 ![FoodBankLocator](static/Nutrition.png)
 
 <h2>Demo Video</h2>
-placeholder
+
+[![Demo Video](static/demovideo.png)]([https://youtu.be/AwGQKb_bSLo](https://youtu.be/AwGQKb_bSLo?si=xMn5fnLb7vlYhoI6))
