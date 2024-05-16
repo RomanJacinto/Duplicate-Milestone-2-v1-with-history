@@ -10,7 +10,7 @@ This AI application offers a practical solution tailored to the unique needs of 
 <h2>Our Solution</h2>
 <h3>Home Page</h3>
 The "Generate a Recipe from Ingredients in your Kitchen" feature on the Home Page offers users a convenient and versatile way to generate recipes based on the ingredients they have available. By simply uploading an image or typing in the list of ingredients, users can be  recommended a meal based on the given ingredients. 
-![Home Page](static/HomePage.png)
+![](static/HomePage.png)
 
 <h3>Budgeted Meal Plans</h3>
 The Budgeted Meal Plan feature offers users a practical tool for managing their expenses while adhering to their dietary preferences. By entering their daily budget, diet type, and any specific dietary preferences or exclusions, the application generates a comprehensive daily or weekly meal plan that optimizes resources to fit within the specified budget. This feature not only promotes financial responsibility but also ensures that users can enjoy nutritious and satisfying meals that align with their culinary preferences and dietary needs. Whether users aim to save money, explore new recipes, or maintain a healthy lifestyle, the Budgeted Meal Plan feature offers a practical solution for achieving their goals.
