@@ -27,13 +27,27 @@ Finally, education is the first step to making healthy changes stick, and the Le
 
 
 <h2>Screenshots</h2>
-!![01](https://github.com/IrvinLyMiffy/Milestone-2-v1/blob/main/README_Images/01.png)
-!!(https://github.com/IrvinLyMiffy/Milestone-2-v1/blob/main/README_Images/01.png)
-!(https://github.com/IrvinLyMiffy/Milestone-2-v1/blob/main/README_Images/02.png)
-!(https://github.com/IrvinLyMiffy/Milestone-2-v1/blob/main/README_Images/03.png)
-!(https://github.com/IrvinLyMiffy/Milestone-2-v1/blob/main/README_Images/04.png)
-!(https://github.com/IrvinLyMiffy/Milestone-2-v1/blob/main/README_Images/05.png)
-!(https://github.com/IrvinLyMiffy/Milestone-2-v1/blob/main/README_Images/06.png)
 
-Demo Video
+<h4>Recipe from Ingredients</h4>
 
+![main](readmeimages/01.png)
+
+<h4>Popular Recipes</h4>
+
+![popular](readmeimages/02.png)
+
+<h4>Budgeted Meal Plans</h4>
+
+![](readmeimages/03.png)
+![](readmeimages/04.png)
+![](readmeimages/05.png)
+
+<h4>Locate a Food Bank</h4>
+
+
+![](readmeimages/06.png)
+
+<h2>Demo Video</h2>
+Click Image to Play Video
+
+[![Watch the video](https://img.youtube.com/vi/AwGQKb_bSLo/maxresdefault.jpg)](https://youtu.be/AwGQKb_bSLo)
